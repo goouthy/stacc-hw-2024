@@ -1,10 +1,12 @@
 import os
+from io import BytesIO
+import base64
+
 import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from io import BytesIO
-import base64
+
 from flask import Flask, render_template_string
 
 # STEP 4. Write web API
@@ -79,12 +81,12 @@ def home():
         <h1>Welcome to the Iris Dataset API!</h1>
         <p>Here are the available endpoints:</p>
         <ul>
-            <li><b><a href="/dataset">All Data</a></b></li> <!-- See the whole dataset -->
-            <li><b><a href="/summary">Full Summary Statistics</a></b></li> <!-- See summary statistics for the whole dataset -->
-            <li><b><a href="/species_summary">Summary Statistics by Species</a></b></li> <!-- See summary statistics grouped by species -->
-            <li><b><a href="/feature_pairplot">Pairplot Visualization</a></b></li> <!-- View a pairplot visualization of relationships between features and feature distributions by species -->
-            <li><b><a href="/min_sepal_widths">Top Smallest Sepal Width</a></b></li> <!-- See top 5 entries with smallest sepal widths -->
-            <li><b><a href="/largest_petal_area">Largest Petal Surface per Species</a></b></li> <!-- See the largest petal surface area per species -->
+            <li><b><a href="/dataset">All Data</a></b></li> 
+            <li><b><a href="/summary">Full Summary Statistics</a></b></li> 
+            <li><b><a href="/species_summary">Summary Statistics by Species</a></b></li> 
+            <li><b><a href="/feature_pairplot">Pairplot Visualization</a></b></li> 
+            <li><b><a href="/min_sepal_widths">Top Smallest Sepal Width</a></b></li> 
+            <li><b><a href="/largest_petal_area">Largest Petal Surface per Species</a></b></li> 
         </ul>
     """)
 
