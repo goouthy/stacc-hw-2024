@@ -5,7 +5,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
-from flask import Flask, request, render_template_string
+from flask import Flask, render_template_string
 
 # STEP 4. Write web API
 
