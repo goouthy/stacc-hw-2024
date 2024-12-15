@@ -1,5 +1,5 @@
 # Iris Dataset Analysis and Web API
-##### Homework for STACC Data Engineer position
+##### Homework for Data Engineer position
 
 This project covers the steps from fetching the classic Iris dataset, cleaning it, and serving it through a simple web API. Here’s a breakdown:
 
