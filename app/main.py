@@ -4,7 +4,6 @@ import threading
 from api import app
 
 def run_prep():
-    print("Running data preparation (prep.py)...")
     subprocess.run(['python', 'app/prep.py'])
 
 def run_api():

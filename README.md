@@ -30,6 +30,20 @@ A simple Flask-based web API is built to serve the Iris dataset and provide stat
 - **`data/iris_data_clean.parquet`**: The cleaned dataset stored as a Parquet file. 
 - **`tests/test_api.py`**: Includes unit tests to ensure the API's endpoints work as expected. All tests passed successfully.
 
-## How to Run
+## How to Run with Dockerfile
    ```bash
-   python app/main.py
+   git clone https://github.com/goouthy/stacc-hw-2024.git
+
+   docker build -t mycontainer .
+
+   docker run -p 5000:5000 mycontainer
+```
+
+After running the container, the API will be accessible at http://127.0.0.1:5000 or http://localhost:5000 in your web browser.
+
+## How to Run without Dockerfile
+   ```bash
+   python app/main.py    
+```
+
+This version will produce some data visualisations about Iris dataset. API will be accessible at http://127.0.0.1:5000.
