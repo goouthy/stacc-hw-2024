@@ -32,8 +32,6 @@ A simple Flask-based web API is built to serve the Iris dataset and provide stat
 
 ## How to Run with Dockerfile
    ```bash
-   git clone https://github.com/goouthy/stacc-hw-2024.git
-
    docker build -t mycontainer .
 
    docker run -p 5000:5000 mycontainer
