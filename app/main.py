@@ -1,7 +1,7 @@
 import subprocess
-import webbrowser
-import time
 import threading
+
+from api import app
 
 def run_prep():
     print("Running data preparation (prep.py)...")
@@ -9,28 +9,15 @@ def run_prep():
 
 def run_api():
     print("Running API (api.py)...")
-    subprocess.run(['python', 'app/api.py'])
-
-def open_browser():
-    time.sleep(2)
-    print("Opening the API in your default browser...")
-    webbrowser.open("http://127.0.0.1:5000")
+    app.run(debug=False, host='0.0.0.0', port=5000, use_reloader=False)
 
 def main():
     # Step 1: Run data preparation
     run_prep()
 
-    # Step 2: Ask user if they want to run the API
-    user_input = input("Do you want to run the API now? (y/n): ").strip().lower()
-
-    if user_input == 'y':
-        api_thread = threading.Thread(target=run_api)
-        api_thread.start()
-
-        # Open the API in the browser
-        open_browser()
-    else:
-        print("Skipping API. You can run it later.")
+    # Step 2: Run API in a separate thread
+    api_thread = threading.Thread(target=run_api)
+    api_thread.start()
 
 if __name__ == '__main__':
     main()
