@@ -125,7 +125,7 @@ def get_full_summary():
 @app.route('/species_summary', methods=['GET'])
 def get_species_summary():
     try:
-        species_summary = df.groupby('species').describe().stack(level=0).reset_index()
+        species_summary = df.groupby('species').describe().stack(level=0, future_stack=True).reset_index()
         species_summary.columns = ['species', 'stat', 'count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max']
         species_summary = species_summary[species_summary['stat'] != 'species']
         species_summary['count'] = species_summary['count'].astype(int)
@@ -172,8 +172,8 @@ def top_n():
                                         f'<td style="font-weight: bold;">{row["sepal_width"]}</td>')
 
     return render_template_string(CSS_STYLES + """
-        <h2>Top {{n}} Smallest Sepal Width</h2>
-        <p>This table shows the {{n}} flowers with the smallest sepal width:</p>
+        <h2>Top 5 Smallest Sepal Width</h2>
+        <p>This table shows the 5 flowers with the smallest sepal width:</p>
         <div style="overflow-x:auto; text-align:center;">
             {{ top_n_html|safe }}
         </div>

@@ -28,6 +28,7 @@ A simple Flask-based web API is built to serve the Iris dataset and provide stat
 ### Other Key Files:
 - **`utils.py`**: Contains helper functions like `fetch_data` (to download the dataset) and `remove_outliers` (to clean the data).
 - **`data/iris_data_clean.parquet`**: The cleaned dataset stored as a Parquet file. 
+- **`tests/test_api.py`**: Includes unit tests to ensure the API's endpoints work as expected. All tests passed successfully.
 
 ## How to Run
    ```bash
