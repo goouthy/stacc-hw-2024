@@ -1,19 +1,34 @@
-# stacc-hw-2024
-Homework for STACC Data Engineer position. Date: 15/12/2024.
+# Iris Dataset Analysis and Web API
+##### Homework for STACC Data Engineer position
 
-The task involves handling, analysing, and storing the famous Iris dataset. Task is divided into following subtasks:
+This project covers the steps from fetching the classic Iris dataset, cleaning it, and serving it through a simple web API. Here’s a breakdown:
 
-1. Downloading the Iris dataset
+## 1. Downloading the Iris Dataset
+The dataset is fetched using the `fetch_data` function from `utils.py`, which pulls data from a URL into a pandas DataFrame.
 
-Used a function named "fetch_data" in utils.py. This function fetches a dataset given an URL, output path, and final dataset name into parquet file.
+## 2. Data Transformation
+The dataset is analyzed using Python’s SweetViz package, which generates an HTML report showing distributions, data types, and potential outliers. Boxplots were then used to visually identify outliers, which were found in the `sepal_width` feature. Four rows containing these outliers were removed from the dataset using the `remove_outliers` function.
 
-2. Performing simple transformations to the data
+## 3. Storing the Data
+Rather than storing the cleaned data in a database like Postgres or AWS, it's saved as a Parquet file. Given the small size of the dataset and the relatively simple transformations applied to it, there’s no need to use a heavy database for storage. Parquet is a great choice here because it’s compact, fast to read, and simple to use for storing the cleaned data. You’ll find this file in the `data` folder under the name `iris_data_clean.parquet`.
 
-Firstly, analysed the dataset with Python's SweetViz package, which creates an html report for a given dataset, which helps to understand fast the data types, distributions and gives insight into potential outliers. Then proceded to dive deeper into potential outliers by creating boxplot charts for every feature in the dataset, which allowed me to see that the feature "sepal_width" had some outliers out of the interquantile range. Finally, removed these outliers (total of 4 rows) from the dataset.
+## 4. Web API
+A simple Flask-based web API is built to serve the Iris dataset and provide statistical summaries and visualizations. The API lets you easily interact with the data by accessing:
+- **The full dataset**
+- **Summary statistics**
+- **Species-specific summary statistics**
+- **Feature pairwise visualizations an feature distributions by species**
+- **Top entries by smallest `sepal_width` and largest `petal_area`**
 
-For extra analysis, observed the pairwise relationships between features with scatterplots by species. This visualization helped clarify the differences between the different species. For example, clearly the three are different species as they form into three clusters. Most different of the species is the setosa species, whcih having the most distinct values, especially looking at petal length and width.
+### How the App Works:
+- **`main.py`**: This is the starting point of the app. Running this file first prepares the dataset (fetches, cleans, and stores it), then asks if you want to run the web API (`api.py`). If you choose to run the API, it starts in a separate thread and opens in your browser. You can skip the API part if you don’t need it.
+- **`prep.py`**: This script handles fetching, cleaning, and saving the dataset. It’s responsible for removing outliers and storing the cleaned data as a Parquet file.
+- **`api.py`**: This file sets up the Flask API. It loads the cleaned dataset and exposes various endpoints for you to interact with the data, including viewing summaries and generating visualizations.
 
-3. Storing the data
+### Other Key Files:
+- **`utils.py`**: Contains helper functions like `fetch_data` (to download the dataset) and `remove_outliers` (to clean the data).
+- **`data/iris_data_clean.parquet`**: The cleaned dataset stored as a Parquet file. 
 
-Although the point of this step probably was to see what technical skills I posses, I will rather demonstrate my understandmant of business optimisation, and will not use any tools which are not necessary for given task. Since the dataset is so small, and I don't see the need of querying the dataset using SQL nor do I have any need to further expand this project in the future, I will opt for saving the dataset as parquet. Parquet is simple to use, and will be compressed down even further, which makes it better than csv.
-
+## How to Run
+   ```bash
+   python app/main.py
