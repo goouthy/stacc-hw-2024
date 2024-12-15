@@ -23,7 +23,7 @@ A simple Flask-based web API is built to serve the Iris dataset and provide stat
 ### How the App Works:
 - **`main.py`**: This is the starting point of the app. Running this file first prepares the dataset (fetches, cleans, and stores it), then asks if you want to run the web API (`api.py`). If you choose to run the API, it starts in a separate thread and opens in your browser. You can skip the API part if you don’t need it.
 - **`prep.py`**: This script handles fetching, cleaning, and saving the dataset. It’s responsible for removing outliers and storing the cleaned data as a Parquet file.
-- **`api.py`**: This file sets up the Flask API. It loads the cleaned dataset and exposes various endpoints for you to interact with the data, including viewing summaries and generating visualizations.
+- **`api.py`**: This file sets up the Flask API. It loads the cleaned dataset and exposes various endpoints for you to interact with the data, including viewing summaries and generating visualizations. While in a production enviroment, it’s a good idea to restructure the application to separate the routing logic into distinct modules, this structure works just fine for the current scale.
 
 ### Other Key Files:
 - **`utils.py`**: Contains helper functions like `fetch_data` (to download the dataset) and `remove_outliers` (to clean the data).
